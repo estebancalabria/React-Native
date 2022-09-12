@@ -3,6 +3,8 @@ import { StatusBar } from 'expo-status-bar';
 import { Button, StyleSheet, Text, View } from 'react-native';
 import { Dimensions } from 'react-native';
 import Cabecera from './compoents/Cabecera';
+import ContadorFuncional from "./compoents/ContadorFuncional";
+import ContadorClases from "./compoents/ContadorClases";
 
 export default function App() {
 
@@ -13,15 +15,8 @@ export default function App() {
   return (
     <View style={styles.container}>
       <Cabecera />
-      <View style={{ flex: 1, alignItems: 'center', justifyContent: "center" }}>
-        <Text>Usted Ha Hecho Click</Text>
-        <Text style={{ fontSize: 30 }}>{clicks}</Text>
-        <Text>Veces</Text>
-        <View style={{ flexDirection: 'row' }}>
-          <Button title='Reset' />
-          <Button title='+' onPress={()=>{setClicks(clicks+1)}}/>
-        </View>
-      </View>
+      <ContadorFuncional /> 
+      <ContadorClases />
     </View>
   );
 }
