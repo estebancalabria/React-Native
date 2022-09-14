@@ -1,10 +1,15 @@
 import { useState } from "react";
 import { StatusBar } from 'expo-status-bar';
-import { Button, StyleSheet, Text, View } from 'react-native';
+import { Alert, Button, StyleSheet, Text, View } from 'react-native';
 import { Dimensions } from 'react-native';
 import Cabecera from './compoents/Cabecera';
 import ContadorFuncional from "./compoents/ContadorFuncional";
 import ContadorClases from "./compoents/ContadorClases";
+import { NavigationContainer } from "@react-navigation/native";
+import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
+import { FontAwesome } from "@expo/vector-icons";
+
+const Tab = createBottomTabNavigator();
 
 export default function App() {
 
@@ -13,11 +18,23 @@ export default function App() {
   const width: number = Dimensions.get("window").width;
 
   return (
-    <View style={styles.container}>
+    <NavigationContainer>
       <Cabecera />
-      <ContadorFuncional /> 
-      <ContadorClases />
-    </View>
+      <Tab.Navigator screenOptions={{tabBarActiveTintColor:"red",  tabBarActiveBackgroundColor:"#efe"}}>
+        <Tab.Screen name="Contador Funcional"
+          component={ContadorFuncional}
+          options={() => ({
+            tabBarIcon: ({ color }) => (<FontAwesome name="clock-o" size={30} color={color} />)
+          })} />
+        <Tab.Screen name="Contador Clases" component={ContadorClases}
+          options={(props)=>{
+             return { 
+                tabBarIcon : (props)=>{ return <FontAwesome name="picture-o" size={30} color={props.color} /> }
+             }
+          }}
+        />
+      </Tab.Navigator>
+    </NavigationContainer>
   );
 }
 
