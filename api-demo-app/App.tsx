@@ -3,8 +3,13 @@ import { useEffect, useState } from 'react';
 import { Alert, StyleSheet, Text, View, Image, ScrollView, Button } from 'react-native';
 import axios from 'axios';
 import Character from './models/character.model';
+import CharacterView from './components/CharacterView';
+import { NavigationContainer } from "@react-navigation/native"
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import CharacterDetail from './components/CharacterDetail';
 
 const URL = "https://rickandmortyapi.com/api/character";
+const Stack = createNativeStackNavigator();
 
 export default function App() {
 
@@ -17,27 +22,26 @@ export default function App() {
   }, []);
 
   return (
-    <ScrollView>
-      <View style={styles.container}>
+    <NavigationContainer>
+      <Stack.Navigator>
+        <Stack.Screen name='Rick And Morty Chars'>
+          {
+            ({navigation}) => (
 
-        {
-          characters.map((item) => (
-            <View key={item.id} style={{ flexDirection: "row", margin: 2 }} >
-              <Image style={{ width: 100, height: 100, marginEnd: 10 }} source={{ uri: item.image }} />
-              <View style={{flexDirection:"column"}}>
-                <Text style={{ fontSize: 25, fontWeight: 'bold' }}>
-                  {item.name}
-                </Text>
-                <Text style={{fontSize:17, color:(item.status==="Alive"?"green":"red")}}>
-                  {item.status}
-                </Text>
-                <Button title="Mas Informacion..." />
-              </View>
-            </View>
-          ))
-        }
-      </View>
-    </ScrollView>
+                <ScrollView>
+                  <View style={styles.container}>
+                    {
+                      characters.map((item, index) => 
+                      (<CharacterView key={item.id} item={item} index={index} navigation={navigation} />))
+                    }
+                  </View>
+                </ScrollView>
+            )
+          }
+        </Stack.Screen>
+        <Stack.Screen name='Details' component={CharacterDetail} />
+      </Stack.Navigator>
+    </NavigationContainer>
   );
 }
 
