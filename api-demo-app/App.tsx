@@ -1,3 +1,4 @@
+import React from 'react';
 import { StatusBar } from 'expo-status-bar';
 import { useEffect, useState } from 'react';
 import { Alert, StyleSheet, Text, View, Image, ScrollView, Button } from 'react-native';
@@ -14,28 +15,37 @@ const Stack = createNativeStackNavigator();
 export default function App() {
 
   const [characters, setCharacters] = useState<Character[]>([]);
+  const [page, setPage] = useState<number>(1)
+  const ref = React.useRef<ScrollView>();
+
   useEffect(() => {
     //TODO: Mostrar tambien como hacerlo con un async/await
-    axios.get(URL).then((resp) => {
-      setCharacters(resp.data.results);
+    axios.get(URL + `?page=${page}`).then((resp) => {
+      setCharacters(resp.data.results); 
+      ref.current?.scrollTo({x:0,y:0, animated:true});
     })
-  }, []);
+  }, [page]);
 
   return (
     <NavigationContainer>
       <Stack.Navigator>
         <Stack.Screen name='Rick And Morty Chars'>
           {
-            ({navigation}) => (
-
-                <ScrollView>
+            ({ navigation }) => (
+              <View>
+                <View style={{flexDirection:"row"}}>
+                  <View style={{flex:1}}><Button disabled={page==1} title='<<' onPress={()=>{(page>1) && setPage(page-1)}} /></View>
+                  <View style={{flex:1}}><Button title='>>' onPress={()=>{setPage(page+1)}} /></View>
+                </View>
+                <ScrollView ref={ref}>
                   <View style={styles.container}>
                     {
-                      characters.map((item, index) => 
-                      (<CharacterView key={item.id} item={item} index={index} navigation={navigation} />))
+                      characters.map((item, index) =>
+                        (<CharacterView key={item.id} item={item} index={index} navigation={navigation} />))
                     }
                   </View>
                 </ScrollView>
+              </View>
             )
           }
         </Stack.Screen>

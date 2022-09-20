@@ -10,4 +10,8 @@ export default interface Character{
     name : string;
     image: string;
     status: Status;
+    species: string;
+    origin : {
+        name:string
+    }
 }
