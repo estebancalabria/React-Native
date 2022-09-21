@@ -8,6 +8,7 @@ import ContadorClases from "./compoents/ContadorClases";
 import { NavigationContainer } from "@react-navigation/native";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { FontAwesome } from "@expo/vector-icons";
+import ComplexCounter from "./context-api-demo/ComplexCounter";
 
 const Tab = createBottomTabNavigator();
 
@@ -20,19 +21,20 @@ export default function App() {
   return (
     <NavigationContainer>
       <Cabecera />
-      <Tab.Navigator screenOptions={{tabBarActiveTintColor:"red",  tabBarActiveBackgroundColor:"#efe"}}>
+      <Tab.Navigator screenOptions={{ tabBarActiveTintColor: "red", tabBarActiveBackgroundColor: "#efe" }}>
         <Tab.Screen name="Contador Funcional"
           component={ContadorFuncional}
           options={() => ({
             tabBarIcon: ({ color }) => (<FontAwesome name="clock-o" size={30} color={color} />)
           })} />
         <Tab.Screen name="Contador Clases" component={ContadorClases}
-          options={(props)=>{
-             return { 
-                tabBarIcon : (props)=>{ return <FontAwesome name="picture-o" size={30} color={props.color} /> }
-             }
+          options={(props) => {
+            return {
+              tabBarIcon: (props) => { return <FontAwesome name="picture-o" size={30} color={props.color} /> }
+            }
           }}
         />
+        <Tab.Screen name="Contador Context" component={ComplexCounter} />
       </Tab.Navigator>
     </NavigationContainer>
   );
