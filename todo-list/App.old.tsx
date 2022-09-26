@@ -4,7 +4,6 @@ import { useState } from 'react';
 import { FontAwesome } from '@expo/vector-icons';
 import { Provider } from 'react-redux';
 import laUnicaVerdad from './store/store';
-import ListaDeTareas from './components/ListaDeTareas';
 
 
 export default function App() {
@@ -24,7 +23,24 @@ export default function App() {
 
 
         <View style={{ borderBottomWidth: 1, borderBottomColor: "back" }}></View>
-        <ListaDeTareas />
+        <Text style={{ fontSize: 50 }}>Lista De Tareas:</Text>
+        <FlatList
+          data={tareas}
+          renderItem={({ item }) => (
+            <View style={{ flexDirection: "row", padding: 10 }}>
+              <Pressable style={{ borderWidth: 1, borderRadius: 35, marginEnd: 10, backgroundColor: "red" }}
+                onPress={() => {
+                  setTareas(tareas.filter(
+                    (curr) => (curr.id !== item.id))
+                  )
+                }}>
+                <FontAwesome name='trash' style={{ marginStart: 5, fontSize: 35, marginEnd: 5, padding: 5 }} />
+              </Pressable>
+              <Text style={{ fontSize: 30 }} key={item.id}>{item.nombre}</Text>
+            </View>
+          )}
+          ItemSeparatorComponent={() => (<View style={{ borderBottomWidth: 1, borderBottomColor: "back" }}></View>)}
+        />
         <TextInput style={{ borderWidth: 1, padding: 5 }}
           placeholder='Nueva Tarea...'
           value={nuevaTarea}
