@@ -1,10 +1,12 @@
 import { StatusBar } from 'expo-status-bar';
-import { Button, Keyboard, StyleSheet, Text, TextInput, View, FlatList, Pressable } from 'react-native';
+import { Button, Keyboard, StyleSheet, Text, TextInput, View, FlatList, Pressable, Alert } from 'react-native';
 import { useState } from 'react';
 import { FontAwesome } from '@expo/vector-icons';
 import { Provider } from 'react-redux';
 import laUnicaVerdad from './store/store';
-import ListaDeTareas from './components/ListaDeTareas';
+import ListaDeTareas from './containers/ListaDeTareas.container';
+import TotalTareas from './containers/TotalTareas.container';
+import AgregarTarea from './components/AgregarTarea';
 
 
 export default function App() {
@@ -19,26 +21,10 @@ export default function App() {
   return (
     <Provider store={laUnicaVerdad}>
       <View style={styles.container}>
-        <View style={{ borderBottomWidth: 1, borderBottomColor: "back" }}></View>
-
-
-
+        <TotalTareas />
         <View style={{ borderBottomWidth: 1, borderBottomColor: "back" }}></View>
         <ListaDeTareas />
-        <TextInput style={{ borderWidth: 1, padding: 5 }}
-          placeholder='Nueva Tarea...'
-          value={nuevaTarea}
-          onChangeText={(text) => { setNuevaTarea(text) }} />
-        <Button title='Agregar Tarea'
-          onPress={() => {
-            setTareas([...tareas, {
-              id: Math.max(...tareas.map(item => item.id), 0) + 1,
-              nombre: nuevaTarea,
-              done: false
-            }]);
-            setNuevaTarea("");
-            Keyboard.dismiss();
-          }} />
+        <AgregarTarea onAgregarTarea={(n:string)=>{Alert.alert(n)}} />
         <StatusBar style="auto" />
       </View>
     </Provider>

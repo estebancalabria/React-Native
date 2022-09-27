@@ -1,12 +1,13 @@
 import { configureStore } from "@reduxjs/toolkit";
 import Tarea from "../model/tare";
+import reducer from "../reducer/reducer";
 
 interface IStore{
     tareas:Tarea[]
 }
 
 export default configureStore({
-    reducer : (s,a)=>s,
+    reducer : reducer,
     preloadedState: {
         tareas : [
             { id: 1, nombre: "T1", done: false },

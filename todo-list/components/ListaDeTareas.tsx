@@ -1,5 +1,4 @@
 import { Text, FlatList, View } from "react-native";
-import {connect} from "react-redux";
 
 const ListaDeTareas = ({ tareas }:any) => {
     return (
@@ -31,10 +30,4 @@ const ListaDeTareas = ({ tareas }:any) => {
     )
 }
 
-function mapStateToProps(state:any){
-    return {
-        tareas : state.tareas
-    }
-}
-
-export default connect(mapStateToProps)(ListaDeTareas);
+export default ListaDeTareas;
