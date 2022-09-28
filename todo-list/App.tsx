@@ -6,7 +6,7 @@ import { Provider } from 'react-redux';
 import laUnicaVerdad from './store/store';
 import ListaDeTareas from './containers/ListaDeTareas.container';
 import TotalTareas from './containers/TotalTareas.container';
-import AgregarTarea from './components/AgregarTarea';
+import AgregarTarea from './containers/AgregarTarea.container';
 
 
 export default function App() {
@@ -24,7 +24,7 @@ export default function App() {
         <TotalTareas />
         <View style={{ borderBottomWidth: 1, borderBottomColor: "back" }}></View>
         <ListaDeTareas />
-        <AgregarTarea onAgregarTarea={(n:string)=>{Alert.alert(n)}} />
+        <AgregarTarea  />
         <StatusBar style="auto" />
       </View>
     </Provider>

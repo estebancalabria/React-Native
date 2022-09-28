@@ -12,7 +12,8 @@ export default ({onAgregarTarea}:any)=>{
         onChangeText={(text) => { setNuevaTarea(text) }} />
       <Button title='Agregar Tarea'
         onPress={() => {
-            onAgregarTarea(nuevaTarea)
+            onAgregarTarea(nuevaTarea);
+            setNuevaTarea("");
         }} />
     </View>)
 }
