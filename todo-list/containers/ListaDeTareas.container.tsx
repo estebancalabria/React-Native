@@ -1,5 +1,6 @@
-import ListaDeTareas from "../components/ListaDeTareas";
+import ListaDeTareas, { IListaDeTareasProps } from "../components/ListaDeTareas";
 import {connect} from "react-redux";
+import { eliminarTarea } from "../actions/action-creators";
 
 function mapStateToProps(state:any){
     return {
@@ -7,4 +8,14 @@ function mapStateToProps(state:any){
     }
 }
 
-export default connect(mapStateToProps)(ListaDeTareas);
+function mapDispathToProps(dispatch:any){
+    return {
+        onEliminarTarea : (id:number)=>{
+            let accion = eliminarTarea(id);
+            dispatch(accion);
+        }
+    }
+}
+
+
+export default connect<IListaDeTareasProps>(mapStateToProps,mapDispathToProps)(ListaDeTareas);

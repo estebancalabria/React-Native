@@ -1,4 +1,5 @@
-import { ACT_AGREGAR_TAREA } from "../actions/action-types";
+import { Alert } from "react-native";
+import { ACT_AGREGAR_TAREA, ACT_ELIMINAR_TAREA } from "../actions/action-types";
 
 export default function reducer(state:any, action:any){
     let newState = {...state};
@@ -13,7 +14,9 @@ export default function reducer(state:any, action:any){
                 }
             ] 
             break;
-    
+        case ACT_ELIMINAR_TAREA:
+            newState.tareas = newState.tareas.filter((t:any) => (t.id !== action.payload))
+            break;
         default:
             break;
     }

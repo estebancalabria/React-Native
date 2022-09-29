@@ -1,8 +1,15 @@
 import { Text, FlatList, View, Pressable } from "react-native";
 import { FontAwesome } from '@expo/vector-icons';
+import Tarea from "../model/tare";
+import theme from "../styles/theme";
+
+export interface IListaDeTareasProps{
+    tareas : Tarea[],
+    onEliminarTarea? : (id:number)=>{}
+}
 
 
-const ListaDeTareas = ({ tareas }: any) => {
+const ListaDeTareas = ({ tareas, onEliminarTarea }: IListaDeTareasProps) => {
     return (
         <View style={{ flex: 1 }}>
             <Text style={{ fontSize: 50 }}>
@@ -10,6 +17,11 @@ const ListaDeTareas = ({ tareas }: any) => {
             </Text>
             <FlatList
                 data={tareas}
+                ListEmptyComponent={()=>(
+                <View style={{...theme.center, aspectRatio:1}}>
+                    <Text style={{...theme.center, ...theme.h1}}>Lista Vacia</Text>
+                </View>
+                )}
                 renderItem={({ item }) => (
                     <View key={item.id} style={{
                         flex: 1,
@@ -20,7 +32,9 @@ const ListaDeTareas = ({ tareas }: any) => {
                             borderWidth: 1, borderRadius: 35, marginEnd: 10,
                             backgroundColor: "red"
                         }}
-                            onPress={() => { }}>
+                            onPress={() => { 
+                                onEliminarTarea!(item.id)
+                            }}>
                             <FontAwesome name='trash' style={{
                                 marginStart: 5, fontSize: 35,
                                 marginEnd: 5, padding: 5
