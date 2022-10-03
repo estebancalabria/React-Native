@@ -9,6 +9,7 @@ import { NavigationContainer } from "@react-navigation/native";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { FontAwesome } from "@expo/vector-icons";
 import ComplexCounter from "./context-api-demo/ComplexCounter";
+import ReduxCounter from "./redux/ReduxCounter";
 
 const Tab = createBottomTabNavigator();
 
@@ -35,6 +36,7 @@ export default function App() {
           }}
         />
         <Tab.Screen name="Contador Context" component={ComplexCounter} />
+        <Tab.Screen name="Redux Counter" component={ReduxCounter} />
       </Tab.Navigator>
     </NavigationContainer>
   );
