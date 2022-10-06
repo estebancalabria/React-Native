@@ -1,0 +1,39 @@
+{
+    "pokemones": [
+        {
+            "id": 1,
+            "nombre": "Pikachu",
+            "tipo": "Electrico",
+            "imagen": "",
+            "hp": 1000
+        },
+        {
+            "id": 2,
+            "nombre": "Ivi",
+            "tipo": "Hiedra",
+            "imagen": "",
+            "hp": 2000
+        },
+        {
+            "id": 3,
+            "nombre": "Umbreon",
+            "tipo": "Fuego",
+            "imagen": "",
+            "hp": 1000
+        },
+        {
+            "id": 4,
+            "nombre": "Charizard",
+            "tipo": "Fuego",
+            "imagen": "",
+            "hp": 2000
+        },
+        {
+            "id": 5,
+            "nombre": "Voltro",
+            "tipo": "Electrico",
+            "imagen": "",
+            "hp": 2000
+        }
+    ]
+}
