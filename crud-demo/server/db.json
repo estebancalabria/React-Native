@@ -28,10 +28,22 @@
       "hp": 2000
     },
     {
-      "nombre": "Pepito",
+      "id": 6,
+      "nombre": "Dino",
       "tipo": "Electrico",
-      "hp": 1000,
-      "id": 6
+      "hp": 1000
+    },
+    {
+      "nombre": "Ulbasu",
+      "tipo": "Electirico",
+      "hp": 500,
+      "id": 7
+    },
+    {
+      "nombre": "Ruben",
+      "tipo": "Agua",
+      "hp": 400,
+      "id": 8
     }
   ]
 }

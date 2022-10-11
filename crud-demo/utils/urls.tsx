@@ -1,2 +1,2 @@
 
-export const POKE_URL = "https://6132-190-225-137-77.sa.ngrok.io/pokemones";
+export const POKE_URL = "https://70ba-190-225-137-77.sa.ngrok.io/pokemones";

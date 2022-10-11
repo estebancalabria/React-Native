@@ -14,6 +14,13 @@ export default ({ navigation, route }: any) => {
             .catch((err) => { Alert.alert(JSON.stringify(err)) })
     }, []);
 
+    useEffect(() => {
+        navigation.addListener("focus", () => {
+            axios.get(POKE_URL)
+                .then((resp) => { setPokes(resp.data) })
+        })
+    }, [navigation])
+
 
     return <View style={{ flex: 1 }}>
         <View style={{ flexDirection: "row", justifyContent: "space-between", marginEnd: 30 }}>
@@ -61,14 +68,18 @@ export default ({ navigation, route }: any) => {
                 </View>
             ))
         }
-        <Button title="+" onPress={() => {
+        <Pressable style={{
+            width: 60,
+            height: 60,
+            borderRadius: 30,
+            backgroundColor: '#ee6e73',
+            position: 'absolute',
+            bottom: 10,
+            right: 10
+        }} onPress={() => {
             navigation.navigate("Formulario")
-        }} />
-
-        <Button title="REFRESH" onPress={() => {
-            axios.get(POKE_URL)
-                .then((resp) => { setPokes(resp.data) })
-
-        }} />
+        }}>
+            <FontAwesome style={{top:"30%", left:"30%", fontSize:30}} name="plus" />
+        </Pressable>
     </View>
 }
