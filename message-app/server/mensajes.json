@@ -1,0 +1,16 @@
+{
+  "mensajes": [
+    {
+      "id": 1,
+      "contenido": "Primer mensaje"
+    },
+    {
+      "contenido": "Hola",
+      "id": 2
+    },
+    {
+      "contenido": "Chau",
+      "id": 3
+    }
+  ]
+}
